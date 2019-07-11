@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'folders.apps.FoldersConfig', # folders app
     'links.apps.LinksConfig', # links app
     'users.apps.UsersConfig', # users app
+    'categories.apps.CategoriesConfig', # categories app
 
 ]
 
