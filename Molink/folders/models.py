@@ -13,7 +13,7 @@ class TimeStampedModel(models.Model):
 
 class Folder(TimeStampedModel):
     """ Track Model """
-    name = models.CharField(max_length=40)
+    name = models.CharField(max_length=50)
     color = models.CharField(max_length=20)
     parent_folder = models.ForeignKey(
         'self',
