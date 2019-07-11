@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'rest_framework', #REST framework
 
     'folders.apps.FoldersConfig', #folders app
+    'links.apps.LinksConfig', #links app
 
 ]
 
