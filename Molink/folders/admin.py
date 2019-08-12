@@ -7,6 +7,6 @@ class FolderAdmin(admin.ModelAdmin):
         'id',
         'name',
         'color',
-        'parent_folder',
+        'parent_id',
         'creator',
     )

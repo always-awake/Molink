@@ -15,7 +15,7 @@ class Folder(TimeStampedModel):
     """ Track Model """
     name = models.CharField(max_length=50)
     color = models.CharField(max_length=20)
-    parent_folder = models.ForeignKey(
+    parent_id = models.ForeignKey(
         'self',
         on_delete=models.CASCADE, 
         null=True,
