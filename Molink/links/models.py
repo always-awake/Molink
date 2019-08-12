@@ -7,7 +7,7 @@ class Link(TimeStampedModel):
     """ Link Model """
     name = models.CharField(max_length=50)
     url = models.CharField(max_length=255)
-    parent_folder = models.ForeignKey(
+    parent_id = models.ForeignKey(
         Folder,
         on_delete=models.CASCADE,
         null=True,
