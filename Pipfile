@@ -7,8 +7,10 @@ name = "pypi"
 
 [packages]
 
-django = "*"
 djangorestframework = "*"
+django = "*"
+pillow = "*"
+django-rest-auth = "*"
 
 
 [dev-packages]
