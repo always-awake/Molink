@@ -15,7 +15,7 @@ class Folder(TimeStampedModel):
     """ Track Model """
     name = models.CharField(max_length=50)
     color = models.CharField(max_length=20)
-    parent_id = models.ForeignKey(
+    parent = models.ForeignKey(
         'self',
         on_delete=models.CASCADE, 
         null=True,
@@ -28,6 +28,8 @@ class Folder(TimeStampedModel):
         null=True,
         related_name='folders'        
     )
+    is_private = models.BooleanField(null=True, blank=False, default=False) 
     
     def __str__(self):
         return f'{self.name}'
+

@@ -3,5 +3,5 @@ from . import views
 
 app_name = 'folders'
 urlpatterns = [
-
+	path('', views.Folder.as_view()),
 ]
