@@ -8,10 +8,11 @@ class FolderSerializer(serializers.ModelSerializer):
 		model = models.Folder
 		fields = (
 			'id',
+			'parent',
 			'color',
 			'name',
-			'created_at',
 			'is_private',
+			'created_at',
 		)
 
 
@@ -21,7 +22,7 @@ class FolderCreateSerializer(serializers.ModelSerializer):
 		fields = (
 			'name',
 			'color',
-			'parent_id',
 			'is_private',
+			'parent_id',
 		)
 
