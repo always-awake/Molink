@@ -38,7 +38,7 @@ API Documentation
     }
 ]
 ```
-
+#
 ### create category-based folder
 > 선택한 카테고리 기반으로 폴더를 생성해주는 API
 > 폴더 컬러는 랜덤
@@ -54,23 +54,60 @@ API Documentation
 ```json
 [
     {
-        "id": 10,
+        "id": 1,
         "color": "#53bbb4",
         "name": "개발",
         "created_at": "2019-08-19T18:46:28.083042+09:00"
     },
     {
-        "id": 11,
+        "id": 2,
         "color": "#838cc7",
         "name": "디자인",
         "created_at": "2019-08-19T18:46:28.086418+09:00"
     },
     {
-        "id": 12,
+        "id": 3,
         "color": "#e15258",
         "name": "화장품",
         "created_at": "2019-08-19T18:46:28.088045+09:00"
     }
 ]
 ```
+#
+### Folder List
+> 유저가 생성한 모든 상위폴더(부모 폴더가 없는 폴더) 리스트를 보여주는 API
 
+#### Request  
+- url <br>
+`GET /api/v1/folders/all`
+    
+#### Response
+`status: HTTP 201 Created`
+```json
+[
+    {
+        "id": 1,
+        "parent": null,
+        "color": "#53bbb4",
+        "name": "개발",
+        "is_private": false,
+        "created_at": "2019-08-19T18:46:28.083042+09:00"
+    },
+    {
+        "id": 2,
+        "parent": null,
+        "color": "#838cc7",
+        "name": "디자인",
+        "is_private": false,
+        "created_at": "2019-08-19T18:46:28.086418+09:00"
+    },
+    {
+        "id": 3,
+        "parent": null,
+        "color": "#e15258",
+        "name": "화장품",
+        "is_private": false,
+        "created_at": "2019-08-19T18:46:28.088045+09:00"
+    }
+]
+```
