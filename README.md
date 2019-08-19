@@ -2,15 +2,16 @@ API Documentation
 =================
 * **굵은 글씨**로 표시된 값은 필수값
 
-## API 목
+## API 목록
 
 ## 관심사(Category) API
 ### getCategories
 > 관심사/사진을 가져오는 API
-- Request <br>
-`Get /api/v1/categories`
+#### Request <br>
+- url
+`GET /api/v1/categories`
 
-- Response <br>
+#### Response <br>
 `status: HTTP 200 OK`
 ```
 [
@@ -30,4 +31,28 @@ API Documentation
         "img_url": "https://post-phinf.pstatic.net/MjAxODAyMDdfMjQz/MDAxNTE3OTY4OTI1MzYy.bLREVpZJN3r_g7VR3021Z_E55IqPT9Sm7cRBk-XcOIUg.6kq-mZe8sAwivyPKrfxyupB1DEm47WuKGQe_8DrlXVQg.JPEG/GettyImages-jv11011817.jpg?type=w1200"
     }
 ]
+```
+
+## 유저(User) API
+### user sign up
+> 회원가입 API
+#### Request <br>
+- url
+`POST /api/v1/users/signup`
+- Body
+```
+"name": 이미림
+"username": leemirim
+"password1": a12345
+"password2": a12345
+```
+
+#### Response <br>
+```json
+{
+    "name": "이미림",
+    "username": "leemirim",
+    "password1": "admin12345",
+    "password2": "admin12345"
+}
 ```
