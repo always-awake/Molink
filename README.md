@@ -1,17 +1,23 @@
 API Documentation
 =================
-* **굵은 글씨**로 표시된 값은 필수값
+* **굵은 글씨**로 표시된 Key는 필수값
+* 사용자 인증은 JWT를 이용
+    - Header의 Authorization Key에 JWT <your_token>를 추가하여 request
+    - ex) JWT eyJ0eXAiOiJKV1QiLCJh
+    - 관련 문서: [Django REST framework JWT](http://getblimp.github.io/django-rest-framework-jwt/)
+    - 회원 가입, 로그인 API 외에 모든 API는 Authenticate required
 
 ## API 목록
+* 관심사(Category) API
 
 ## 관심사(Category) API
-### getCategories
-> 관심사/사진을 가져오는 API
-#### Request <br>
-- url
+### get Categories
+> 관심사/사진 url을 가져오는 API
+#### Request
+- url <br>
 `GET /api/v1/categories`
 
-#### Response <br>
+#### Response
 `status: HTTP 200 OK`
 ```
 [
@@ -33,26 +39,38 @@ API Documentation
 ]
 ```
 
-## 유저(User) API
-### user sign up
-> 회원가입 API
-#### Request <br>
-- url
-`POST /api/v1/users/signup`
-- Body
-```
-"name": 이미림
-"username": leemirim
-"password1": a12345
-"password2": a12345
+### create category-based folder
+> 선택한 카테고리 기반으로 폴더를 생성해주는 API
+> 폴더 컬러는 랜덤
+#### Request  
+- url <br>
+`POST /api/v1/categories/folders`
+
+- Body <br>
+    - **category_name_list**: "개발,디자인,화장품" (string)
+    
+#### Response
+`status: HTTP 201 Created`
+```json
+[
+    {
+        "id": 10,
+        "color": "#53bbb4",
+        "name": "개발",
+        "created_at": "2019-08-19T18:46:28.083042+09:00"
+    },
+    {
+        "id": 11,
+        "color": "#838cc7",
+        "name": "디자인",
+        "created_at": "2019-08-19T18:46:28.086418+09:00"
+    },
+    {
+        "id": 12,
+        "color": "#e15258",
+        "name": "화장품",
+        "created_at": "2019-08-19T18:46:28.088045+09:00"
+    }
+]
 ```
 
-#### Response <br>
-```json
-{
-    "name": "이미림",
-    "username": "leemirim",
-    "password1": "admin12345",
-    "password2": "admin12345"
-}
-```
