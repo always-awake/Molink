@@ -9,6 +9,7 @@ API Documentation
 
 ## API 목록
 * 관심사(Category) API
+* 폴더(Folder) API
 
 ## 관심사(Category) API
 ### get Categories
@@ -74,6 +75,7 @@ API Documentation
 ]
 ```
 #
+## 폴더(Folder) API
 ### Folder List
 > 유저가 생성한 모든 상위폴더(부모 폴더가 없는 폴더) 리스트를 보여주는 API
 
@@ -110,4 +112,29 @@ API Documentation
         "created_at": "2019-08-19T18:46:28.088045+09:00"
     }
 ]
+```
+#
+### Create Folder
+> 폴더를 생성하는 API
+> is_pravate 필드와 parent_id 필드는 입력하지 않을 경우 각각 False, null 로 설정됨
+
+#### Request  
+* url <br>
+`POST /api/v1/folders/`
+
+* Body <br>
+    - **name**: "코딩",
+    - **color**: "#A30000",
+    - is_private: true,
+    - parent_id: 2
+    
+#### Response
+`status: HTTP 201 Created`
+```json
+{
+    "name": "코딩",
+    "color": "#A30000",
+    "is_private": true,
+    "parent_id": 2
+}
 ```
