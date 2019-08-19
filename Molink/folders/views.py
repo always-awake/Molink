@@ -6,13 +6,21 @@ from . import serializers
 from . import models
 
 
+class FolderList(APIView):
+	def get(self, request, format=None):
+		user = request.user
+		folders = models.Folder.objects.filter(creator=user)
+		serializer = serializers.FolderSerializer(folders, many=True)
+		return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+
 class Folder(APIView):
 	def post(self, request, format=None):
 		user = request.user
 		print('여기')
 		print(request.data)
 		try:
-			parent_folder = models.Folder.objects.get(id=request.data['parent_id'], creator = user)
+			parent_folder = models.Folder.objects.get(id=request.data['parent_id'], creator=user)
 		except models.Folder.DoesNotExist:
 			return Response(status=status.HTTP_404_NOT_FOUND)
 

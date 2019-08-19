@@ -1,6 +1,7 @@
 from django.contrib import admin
 from . import models
 
+
 @admin.register(models.Folder)
 class FolderAdmin(admin.ModelAdmin):
     list_display = (
@@ -9,4 +10,5 @@ class FolderAdmin(admin.ModelAdmin):
         'color',
         'parent',
         'creator',
+        'is_private',
     )

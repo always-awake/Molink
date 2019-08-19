@@ -11,6 +11,7 @@ class FolderSerializer(serializers.ModelSerializer):
 			'color',
 			'name',
 			'created_at',
+			'is_private',
 		)
 
 
