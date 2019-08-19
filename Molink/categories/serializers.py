@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from .models import Category
-from folders.models import Folder
+
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -13,5 +13,3 @@ class CategorySerializer(serializers.ModelSerializer):
             'img_url',
             'name',
         )
-
-
