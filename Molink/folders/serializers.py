@@ -20,9 +20,10 @@ class FolderCreateSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = models.Folder
 		fields = (
+			'id',
 			'name',
 			'color',
-			'is_private',
 			'parent_id',
+			'is_private',
 		)
 
