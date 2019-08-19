@@ -20,7 +20,7 @@ API Documentation
 
 #### Response
 `status: HTTP 200 OK`
-```
+```json
 [
     {
         "id": 1,
@@ -41,7 +41,7 @@ API Documentation
 ```
 #
 ### create category-based folder
-> 선택한 카테고리 기반으로 폴더를 생성해주는 API
+> 선택한 카테고리 기반으로 폴더를 생성해주는 API <br>
 > 폴더 컬러는 랜덤
 #### Request  
 - url <br>
@@ -119,10 +119,10 @@ API Documentation
 > is_pravate 필드와 parent_id 필드는 입력하지 않을 경우 각각 False, null 로 설정됨
 
 #### Request  
-* url <br>
+* url
 `POST /api/v1/folders/`
 
-* Body <br>
+* Body
     - **name**: "코딩",
     - **color**: "#A30000",
     - is_private: true,
@@ -136,5 +136,28 @@ API Documentation
     "color": "#A30000",
     "is_private": true,
     "parent_id": 2
+}
+```
+#
+## 링크(Link) API
+### Create Link
+> 링크를 생성하는 API
+
+#### Request
+* url
+`POST /api/v1/links/`
+
+* Body
+    - **name**: "프로그래머스-코테연습"
+    - **url**: "https://programmers.co.kr/learn/challenges"
+    - parent_id: 4
+
+#### Response
+`status: HTTP 201 Created`
+```json
+{
+    "name": "링크1",
+    "url": "https://programmers.co.kr/learn/challenges",
+    "parent_id": 4
 }
 ```

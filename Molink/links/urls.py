@@ -3,5 +3,5 @@ from . import views
 
 app_name = 'links'
 urlpatterns = [
-
+	path('', views.Link.as_view()),
 ]

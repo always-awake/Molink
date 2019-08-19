@@ -7,6 +7,6 @@ class LinkAdmin(admin.ModelAdmin):
         'id',
         'name',
         'url',
-        'parent_id',
+        'parent',
         'creator',
     )
