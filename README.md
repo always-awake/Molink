@@ -24,17 +24,17 @@ API Documentation
 [
     {
         "id": 1,
-        "name": "디자인",
+        "name": "개발",
         "img_url": "http://blog.rightbrain.co.kr/CMS1/wp-content/uploads/2016/03/00-Syrup-Character_Titlegw.png"
     },
     {
         "id": 2,
-        "name": "스포츠",
+        "name": "디자인",
         "img_url": "https://sejong.korea.ac.kr/mbshome/mbs/kr/images/sub/hakbu/hakbu_info_2017_030100.jpg"
     },
     {
         "id": 3,
-        "name": "뷰티",
+        "name": "화장품",
         "img_url": "https://post-phinf.pstatic.net/MjAxODAyMDdfMjQz/MDAxNTE3OTY4OTI1MzYy.bLREVpZJN3r_g7VR3021Z_E55IqPT9Sm7cRBk-XcOIUg.6kq-mZe8sAwivyPKrfxyupB1DEm47WuKGQe_8DrlXVQg.JPEG/GettyImages-jv11011817.jpg?type=w1200"
     }
 ]
@@ -115,8 +115,9 @@ API Documentation
 ```
 #
 ### Create Folder
-> 폴더를 생성하는 API
-> is_pravate 필드와 parent_id 필드는 입력하지 않을 경우 각각 False, null 로 설정됨
+> 폴더를 생성하는 API <br>
+> is_pravate 필드는 입력하지 않을 경우 False 로 설정됨 <br>
+> 최상위 폴더일 경우 parent_id 필드에 null을 입력하면 된다.
 
 #### Request  
 * url
@@ -125,17 +126,18 @@ API Documentation
 * Body
     - **name**: "코딩",
     - **color**: "#A30000",
+    - **parent_id**: 2
     - is_private: true,
-    - parent_id: 2
     
 #### Response
 `status: HTTP 201 Created`
 ```json
 {
+    "id": 4,
     "name": "코딩",
     "color": "#A30000",
-    "is_private": true,
-    "parent_id": 2
+    "parent_id": 2,
+    "is_private": true
 }
 ```
 #
@@ -156,6 +158,7 @@ API Documentation
 `status: HTTP 201 Created`
 ```json
 {
+    "id": 1,
     "name": "링크1",
     "url": "https://programmers.co.kr/learn/challenges",
     "parent_id": 4
