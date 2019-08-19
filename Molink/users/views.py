@@ -53,4 +53,9 @@ class UserLogin(APIView):
 			return Response(status=status.HTTP_404_NOT_FOUND)
 
 
+class UserLogout(APIView):
+	# 유저 로그아웃
+	def get(self, request, format=None):
+		django_logout(request)
+		return Response(status=status.HTTP_200_OK)
 
