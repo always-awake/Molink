@@ -9,7 +9,7 @@ from . import models
 class FolderList(APIView):
 	def get(self, request, format=None):
 		user = request.user
-		folders = models.Folder.objects.filter(creator=user)
+		folders = models.Folder.objects.filter(creator=user, parent__isnull=True)
 		serializer = serializers.FolderSerializer(folders, many=True)
 		return Response(data=serializer.data, status=status.HTTP_200_OK)
 
