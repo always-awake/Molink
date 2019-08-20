@@ -46,7 +46,7 @@ class Folder(APIView):
 		children_links = Link.objects.filter(parent=found_folder, creator=user)
 
 		if found_folder.parent is None:
-			sibling_folders = models.Folder.objects.filter(parent__isnull=True, creator=user)
+			sibling_folders = models.Folder.objects.filter(parent__isnull=True, creator=user).exclude(id=folder_id)
 		else:
 			sibling_folders = models.Folder.objects.filter(parent=found_folder.parent, creator=user).exclude(id=folder_id)
 		serializer_data = {
