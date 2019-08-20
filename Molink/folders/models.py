@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.shortcuts import get_object_or_404
 
 
 class TimeStampedModel(models.Model):
@@ -28,8 +29,13 @@ class Folder(TimeStampedModel):
         null=True,
         related_name='folders'        
     )
-    is_private = models.BooleanField(null=True, blank=False, default=False) 
-    
+    is_private = models.BooleanField(null=True, blank=False, default=False)
+
     def __str__(self):
         return f'{self.name}'
+
+    class Meta:
+        ordering = ['-created_at']
+
+
 

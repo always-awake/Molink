@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from links.serializers import LinkSerializer
 from . import models
 
 
@@ -26,4 +27,12 @@ class FolderCreateSerializer(serializers.ModelSerializer):
 			'parent_id',
 			'is_private',
 		)
+
+
+class FolderGetSerializer(serializers.Serializer):
+	folder = FolderSerializer()
+	children_links = LinkSerializer(many=True)
+	children_folders = FolderSerializer(many=True)
+	sibling_folders = FolderSerializer(many=True)
+
 

@@ -1,9 +1,11 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django.shortcuts import get_object_or_404
 
 from . import serializers
 from . import models
+from links.models import Link
 
 
 class FolderList(APIView):
@@ -37,5 +39,22 @@ class Folder(APIView):
 			else:
 				return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-	# def get(self, request, format=None):
-	# 	user = request.user
+	def get(self, request, folder_id, format=None):
+		user = request.user
+		found_folder = get_object_or_404(models.Folder, id=folder_id, creator=user)
+		children_folders = models.Folder.objects.filter(parent=found_folder, creator=user)
+		children_links = Link.objects.filter(parent=found_folder, creator=user)
+
+		if found_folder.parent is None:
+			sibling_folders = models.Folder.objects.filter(parent__isnull=True, creator=user)
+		else:
+			sibling_folders = models.Folder.objects.filter(parent=found_folder.parent, creator=user).exclude(id=folder_id)
+		serializer_data = {
+				"folder": found_folder,
+				"children_folders": children_folders,
+			    "children_links": children_links,
+				"sibling_folders": sibling_folders
+			 }
+		results = serializers.FolderGetSerializer(serializer_data)
+		return Response(data=results.data, status=status.HTTP_200_OK)
+
