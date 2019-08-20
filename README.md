@@ -164,3 +164,27 @@ API Documentation
     "parent_id": 4
 }
 ```
+#
+### Update Link
+> 링크를 수정하는 API
+> 필드 값 중 수정을 원하는 필드만 request body에 담아 요청하면 해당 필드만 수정됨
+
+#### Request
+* url
+`PUT /api/v1/links/{link_id}`
+
+* Body
+    - name: "네이버",
+    - url: "https://www.naver.com/",
+    - parent_id: 16
+
+#### Response
+`status: HTTP 200 OK`
+```json
+{
+"name":"네이버",
+"url":"https://www.naver.com/",
+"parent_id":16
+}
+```
+#
