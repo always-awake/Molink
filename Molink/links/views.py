@@ -43,3 +43,11 @@ class Link(APIView):
 			else:
 				return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+	def delete(self, request, link_id, format=None):
+		user = request.user
+		link_to_delete = get_object_or_404(models.Link, id=link_id, creator=user)
+		link_to_delete.delete()
+		return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+

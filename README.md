@@ -10,6 +10,7 @@ API Documentation
 ## API 목록
 * 관심사(Category) API
 * 폴더(Folder) API
+* 링크(Link) API
 
 ## 관심사(Category) API
 ### get Categories
@@ -166,7 +167,7 @@ API Documentation
 ```
 #
 ### Update Link
-> 링크를 수정하는 API
+> 링크를 수정하는 API <br>
 > 필드 값 중 수정을 원하는 필드만 request body에 담아 요청하면 해당 필드만 수정됨
 
 #### Request
@@ -188,3 +189,12 @@ API Documentation
 }
 ```
 #
+### Delete Link
+> 링크를 삭제하는 API <br>
+
+#### Request
+* url
+`DELETE /api/v1/links/{link_id}`
+
+#### Response
+`status: HTTP 204 NO CONTENT`
