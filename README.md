@@ -142,6 +142,72 @@ API Documentation
 }
 ```
 #
+### Get Folder
+> 한 개의 폴더에 속해있는 폴더/링크 목록과 같은 계층의 폴더 목록을 보여주는 API <br>
+#### Request
+* url
+`GET /api/v1/folders/{folder_id}`
+
+
+#### Response
+`status HTTP 200 OK`
+```json
+{
+    "folder": {
+        "id": 1,
+        "parent": null,
+        "color": "#53bbb4",
+        "name": "개발",
+        "is_private": false,
+        "created_at": "2019-08-19T18:46:28.083042+09:00"
+    },
+    "children_links": [
+        {
+            "id": 3,
+            "name": "링크1 수정",
+            "url": "https://programmers.co.kr/learn/challenges",
+            "parent_id": 10
+        }
+    ],
+    "children_folders": [
+        {
+            "id": 4,
+            "parent": 1,
+            "color": "#08CF5D",
+            "name": "안드로이드",
+            "is_private": false,
+            "created_at": "2019-08-20T17:12:29.786653+09:00"
+        }
+    ],
+    "sibling_folders": [
+        {
+            "id": 4,
+            "parent": null,
+            "color": "#A30000",
+            "name": "음식",
+            "is_private": false,
+            "created_at": "2019-08-19T23:03:11.402520+09:00"
+        },
+        {
+            "id": 3,
+            "parent": null,
+            "color": "#e15258",
+            "name": "화장품",
+            "is_private": false,
+            "created_at": "2019-08-19T18:46:28.088045+09:00"
+        },
+        {
+            "id": 2,
+            "parent": null,
+            "color": "#838cc7",
+            "name": "디자인",
+            "is_private": false,
+            "created_at": "2019-08-19T18:46:28.086418+09:00"
+        }
+    ]
+}
+```
+
 ## 링크(Link) API
 ### Create Link
 > 링크를 생성하는 API
