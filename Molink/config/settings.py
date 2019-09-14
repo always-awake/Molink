@@ -115,3 +115,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# 회원 가입/로그인 시, email을 필수로 요구하지 않도록 설정 (config/settings/base.py)
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = 'none'

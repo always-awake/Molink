@@ -1,7 +1,8 @@
+from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.contrib.auth import login as django_login, logout as django_logout
+from django.contrib.auth import login as django_login, logout as django_logout, authenticate
 
 
 from . import serializers
@@ -21,7 +22,7 @@ class UserSignUp(APIView):
 			serializer = serializers.UserSignUpSerializer(data=request.data)
 			if serializer.is_valid():
 				serializer.save(password=password1)
-				user = User.objects.get(username=username, password=password1)
+				user = get_object_or_404(User, username=username, password=password1)
 				if user:
 					django_login(request, user)
 					print("로그인됨")
@@ -45,9 +46,10 @@ class UserLogin(APIView):
 	def get(self, request, format=None):
 		username = request.POST.get("username", 'username_error')
 		password = request.POST.get("password", 'password_error2')
-		user = User.objects.get(username=username, password=password)
+		user = get_object_or_404(User, username=username, password=password)
 		if user:
 			django_login(request, user)
+			print("로그인됨")
 			return Response(status=status.HTTP_200_OK)
 		else:
 			return Response(status=status.HTTP_404_NOT_FOUND)
@@ -57,5 +59,6 @@ class UserLogout(APIView):
 	# 유저 로그아웃
 	def get(self, request, format=None):
 		django_logout(request)
+		print("로그아웃됨")
 		return Response(status=status.HTTP_200_OK)
 

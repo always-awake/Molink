@@ -58,3 +58,35 @@ class Folder(APIView):
 		results = serializers.FolderGetSerializer(serializer_data)
 		return Response(data=results.data, status=status.HTTP_200_OK)
 
+	def put(self, request, folder_id, format=None):
+		user = request.user
+		found_folder = get_object_or_404(models.Folder, id=folder_id, creator=user)
+		try:
+			parent_folder = get_object_or_404(models.Folder, id=request.data['parent_id'], creator=user)
+
+
+
+
+	def put(self, request, link_id, format=None):
+		user = request.user
+		try:
+			parent_folder = get_object_or_404(Folder, id=request.data['parent_id'], creator=user)
+			found_link = get_object_or_404(models.Link, id=link_id, creator=user)
+			serializer = serializers.LinkSerializer(
+				found_link, data=request.data, partial=True
+			)
+			if serializer.is_valid():
+				serializer.save(parent=parent_folder)
+				return Response(data=serializer.data, status=status.HTTP_200_OK)
+			else:
+				return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+		except KeyError:
+			found_link = get_object_or_404(models.Link, id=link_id, creator=user)
+			serializer = serializers.LinkSerializer(
+				found_link, data=request.data, partial=True
+			)
+			if serializer.is_valid():
+				serializer.save()
+				return Response(data=serializer.data, status=status.HTTP_200_OK)
+			else:
+				return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
